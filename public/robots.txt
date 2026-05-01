@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://boxb.app/sitemap.xml
+Sitemap: https://boxb.app/sitemap-index.xml
