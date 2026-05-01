@@ -1,0 +1,53 @@
+---
+const windows = [
+  { label: 'Acme Inc.', tint: '#1f3327' },
+  { label: 'Beta Studio', tint: '#22304d' },
+  { label: 'Personal', tint: '#3a2832' },
+];
+---
+
+<div class="absolute inset-0 flex items-stretch gap-2 p-3">
+  {
+    windows.map((w, i) => (
+      <div
+        class="relative flex flex-1 flex-col overflow-hidden border border-border bg-bg shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
+        style={`transform: translateY(${i % 2 === 0 ? '0' : '8px'});`}
+      >
+        <header class="flex items-center justify-between border-b border-border bg-surface px-2 py-1.5">
+          <div class="flex items-center gap-1.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-border-bright"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-border-bright"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-border-bright"></span>
+          </div>
+          <span class="rounded-full border border-border-bright px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.15em] text-muted-bright">
+            {w.label}
+          </span>
+        </header>
+        <div class="flex flex-1">
+          <div class="w-1/4 border-r border-border bg-bg/60 p-1.5 space-y-1">
+            {[...Array(5).keys()].map((j) => (
+              <div
+                class={`flex items-center gap-1 ${i === 0 && j === 1 ? 'border-l border-accent pl-1' : ''}`}
+              >
+                <span
+                  class="block h-3 w-3 shrink-0"
+                  style={`background:${w.tint}; clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);`}
+                />
+                <span class="h-1 w-2/3 bg-border-bright"></span>
+              </div>
+            ))}
+          </div>
+          <div class="flex-1 p-2 space-y-1.5">
+            <div class="h-1.5 w-2/3 bg-border-bright"></div>
+            <div class="h-1.5 w-1/2 bg-border"></div>
+            <div class="mt-2 grid grid-cols-3 gap-1">
+              {[...Array(6).keys()].map(() => (
+                <div class="aspect-square bg-surface-2"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

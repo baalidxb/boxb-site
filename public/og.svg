@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#0F0F0F"/>
+      <stop offset="60%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0CC52"/>
+      <stop offset="55%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#9C7E1F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Centered hex with glow -->
+  <g transform="translate(900,315)">
+    <circle cx="0" cy="0" r="220" fill="url(#glow)"/>
+    <!-- Outer abstract hex hints -->
+    <g opacity="0.55" stroke="#1a1a1a" stroke-width="1">
+      <polygon points="160,0 80,138.5 -80,138.5 -160,0 -80,-138.5 80,-138.5" fill="none" stroke="#2a2a2a" stroke-width="1.2"/>
+    </g>
+    <!-- Center BoxB hex -->
+    <polygon points="120,0 60,103.9 -60,103.9 -120,0 -60,-103.9 60,-103.9" fill="url(#gold)"/>
+    <rect x="-72" y="-12" width="144" height="14" fill="#000"/>
+    <rect x="-72" y="22" width="144" height="14" fill="#000"/>
+  </g>
+
+  <!-- Wordmark + tagline -->
+  <g transform="translate(80,260)" font-family="Geist, Inter, system-ui, sans-serif">
+    <text x="0" y="0" font-weight="500" font-size="64" fill="#fff" letter-spacing="-2">Box<tspan font-weight="900" fill="#D4AF37">B</tspan></text>
+    <text x="0" y="120" font-weight="900" font-size="92" fill="#fff" letter-spacing="-3">One hive for</text>
+    <text x="0" y="220" font-weight="900" font-size="92" fill="#D4AF37" letter-spacing="-3">everything.</text>
+    <text x="0" y="290" font-weight="500" font-size="28" fill="#A0A0A0" letter-spacing="-0.5">Run every messenger and work tool in one window.</text>
+  </g>
+
+  <!-- bottom mono line -->
+  <text x="80" y="585" font-family="Geist Mono, ui-monospace, monospace" font-size="20" fill="#6B6B6B" letter-spacing="3">V0.1.1 · WINDOWS 10 / 11 · BOXB.APP</text>
+</svg>

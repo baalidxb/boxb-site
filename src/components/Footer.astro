@@ -1,0 +1,66 @@
+---
+import Wordmark from './Wordmark.astro';
+import BrandMark from './BrandMark.astro';
+---
+
+<footer class="border-t border-border py-16">
+  <div class="container-x">
+    <div class="grid grid-cols-2 gap-10 md:grid-cols-3">
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="inline-flex items-center gap-2.5">
+          <BrandMark size={24} />
+          <Wordmark size="md" />
+        </a>
+        <p class="mt-4 max-w-xs text-sm text-muted-bright">
+          One hive for everything.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-mono text-xs uppercase tracking-[0.2em] text-muted-bright">
+          Product
+        </h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-fg/80">
+          <li><a href="/download/win" class="hover:text-accent">Download</a></li>
+          <li>
+            <a
+              href="https://github.com/baalidxb/boxb/releases"
+              target="_blank"
+              rel="noopener"
+              class="hover:text-accent">Releases</a
+            >
+          </li>
+          <li>
+            <a href="/changelog" class="hover:text-accent">Roadmap</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-mono text-xs uppercase tracking-[0.2em] text-muted-bright">
+          Resources
+        </h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-fg/80">
+          <li>
+            <a
+              href="https://github.com/baalidxb/boxb"
+              target="_blank"
+              rel="noopener"
+              class="hover:text-accent">GitHub</a
+            >
+          </li>
+          <li>
+            <span class="text-muted-bright">Privacy: <span class="text-fg/80">we don't collect data.</span></span>
+          </li>
+          <li>
+            <a href="mailto:hello@boxb.app" class="hover:text-accent">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 border-t border-border pt-8 text-sm text-muted-bright">
+      <p>© 2026 BoxB.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,92 @@
+---
+import HoneycombScene from '~/components/HoneycombScene.astro';
+---
+
+<section
+  id="top"
+  class="relative isolate min-h-[100svh] overflow-hidden hero-bg-gradient"
+>
+  <div class="horizon-line"></div>
+
+  <!-- 3D scene layer (behind text on mobile, beside on desktop) -->
+  <div class="pointer-events-none absolute inset-0 z-0">
+    <div class="container-x grid h-full grid-cols-1 lg:grid-cols-12">
+      <!-- Spacer for left text column -->
+      <div class="hidden lg:col-span-6 lg:block"></div>
+      <!-- Scene column -->
+      <div class="lg:col-span-6 relative">
+        <div
+          class="absolute inset-x-0 top-[18vh] mx-auto h-[60vh] w-[min(90vw,640px)] sm:h-[70vh] lg:inset-y-0 lg:my-auto lg:h-[80vh] lg:w-full"
+        >
+          <HoneycombScene />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text content overlay -->
+  <div class="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-32 pb-20 sm:pt-36">
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p
+          class="reveal mb-6 inline-flex items-center gap-2 border border-border-bright px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-bright"
+        >
+          <span class="inline-block h-1.5 w-1.5 bg-accent"></span>
+          Now in beta · Windows
+        </p>
+        <h1
+          class="reveal reveal-delay-1 font-display font-extrabold text-display-xl text-fg"
+        >
+          One hive for<br />
+          <span class="text-accent">everything</span>.
+        </h1>
+        <p class="reveal reveal-delay-2 mt-7 max-w-xl text-lede text-muted-bright">
+          Never log in and out again. Just work.
+          <span class="block mt-2 text-base text-muted">
+            BoxB runs all your messengers and work tools — every account, every
+            company — in a single, native window.
+          </span>
+        </p>
+
+        <div class="reveal reveal-delay-3 mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <a
+            href="/download/win"
+            class="btn-primary group magnetic"
+            data-magnetic
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download for Windows
+          </a>
+          <a href="/changelog" class="btn-secondary">
+            Free during beta · See what's new
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtle scroll cue -->
+  <div
+    class="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 sm:block"
+  >
+    <div class="flex flex-col items-center gap-2 text-muted">
+      <span class="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+      <span class="block h-8 w-px bg-gradient-to-b from-muted to-transparent"></span>
+    </div>
+  </div>
+</section>

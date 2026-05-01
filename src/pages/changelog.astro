@@ -1,0 +1,512 @@
+---
+import Base from '~/layouts/Base.astro';
+import Nav from '~/components/Nav.astro';
+import Footer from '~/components/Footer.astro';
+import PageMotion from '~/components/PageMotion.astro';
+
+type Soon = {
+  n: string;
+  title: string;
+  apps?: string[];
+  description: string;
+  icon:
+    | 'branch'
+    | 'spark'
+    | 'kanban'
+    | 'chat'
+    | 'pipeline'
+    | 'terminal'
+    | 'shield'
+    | 'command'
+    | 'link';
+};
+
+const soon: Soon[] = [
+  {
+    n: '01',
+    title: 'Code & Repos',
+    apps: ['GitHub', 'GitLab'],
+    description:
+      'Your repos, PRs, and issues — accessible without leaving BoxB.',
+    icon: 'branch',
+  },
+  {
+    n: '02',
+    title: 'AI Assistants',
+    apps: ['ChatGPT', 'Claude', 'GitHub Copilot'],
+    description: 'Every assistant you use, in one keystroke.',
+    icon: 'spark',
+  },
+  {
+    n: '03',
+    title: 'Project Management',
+    apps: ['Jira', 'Linear'],
+    description:
+      'Track work where it lives. Switch contexts without losing place.',
+    icon: 'kanban',
+  },
+  {
+    n: '04',
+    title: 'Team Chat',
+    apps: ['Slack', 'Discord'],
+    description:
+      'Already here, but going deeper. Native integration, faster switching.',
+    icon: 'chat',
+  },
+  {
+    n: '05',
+    title: 'CI/CD Monitor',
+    apps: ['GitHub Actions', 'GitLab CI', 'Vercel', 'Jenkins', 'CircleCI'],
+    description: 'Watch your pipelines without opening five tabs.',
+    icon: 'pipeline',
+  },
+  {
+    n: '06',
+    title: 'Built-in Terminal',
+    apps: ['xterm.js local shell panel'],
+    description:
+      'A real terminal, panel-docked. No more alt-tabbing to PowerShell.',
+    icon: 'terminal',
+  },
+  {
+    n: '07',
+    title: 'Pre-commit Secret Scanner',
+    apps: ['TruffleHog', 'Gitleaks (local engine, no cloud)'],
+    description:
+      'Catches API keys and secrets before they hit your repo. All scanning happens on your machine.',
+    icon: 'shield',
+  },
+  {
+    n: '08',
+    title: 'AI Command Bar',
+    description:
+      "Natural language across every tool. ‘Show me yesterday's PRs from Sarah’ just works.",
+    icon: 'command',
+  },
+  {
+    n: '09',
+    title: 'Context Bridge',
+    description:
+      'CI failure jumps you to the failing test, the related ticket, and the person who last touched it. One click.',
+    icon: 'link',
+  },
+];
+
+type Release = {
+  version: string;
+  date: string;
+  title: string;
+  changes: string[];
+};
+
+const releases: Release[] = [
+  {
+    version: 'v0.1.1',
+    date: 'May 1, 2026',
+    title: 'Auto-update foundation + the great icon fix',
+    changes: [
+      'Catalog icons now render correctly in installed builds (the path resolution bug was real and embarrassing — fixed)',
+      'Auto-update wired in: silent background download, restart prompt when ready, no nagging',
+      'Version display added to the empty state so you always know what you’re on',
+      'Behind the scenes: code-signing prep, NSIS installer naming corrected',
+    ],
+  },
+  {
+    version: 'v0.1.0',
+    date: 'April 2026',
+    title: 'First public build',
+    changes: [
+      'Workspaces, multi-window, locked workspace windows',
+      'Per-instance service rename',
+      'Smart hibernation (light freeze for messengers, aggressive unmount for everything else)',
+      'Custom in-app toast notifications (because Windows native ones hung in unsigned dev builds)',
+      '17 catalog services + custom URL support',
+      'System tray, single-instance lock, close-to-tray',
+      'First packaged Windows installer',
+    ],
+  },
+];
+---
+
+<Base
+  title="BoxB Changelog — What's new and what's coming"
+  description="Track BoxB's progress. See what we've shipped and what's coming next: GitHub, GitLab, Jira, Linear, AI assistants, terminal, CI/CD, and more."
+>
+  <Nav />
+
+  <main>
+    <!-- ────────────────────────────────────────────────────── PAGE HERO -->
+    <section class="relative pt-48 pb-24 sm:pt-56 sm:pb-32">
+      <div class="container-x flex flex-col items-center text-center">
+        <p class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">
+          Roadmap · Changelog
+        </p>
+        <h1
+          class="reveal reveal-delay-1 max-w-4xl font-display font-extrabold text-display-xl text-fg"
+        >
+          What's <span class="text-accent">next</span>.
+        </h1>
+        <p class="reveal reveal-delay-2 mt-7 max-w-2xl text-lede text-muted-bright">
+          BoxB is built in the open. Here's what we're shipping next, and what
+          we've shipped already.
+        </p>
+        <span
+          aria-hidden="true"
+          class="reveal reveal-delay-3 mt-12 inline-block h-px w-24 bg-accent"
+        ></span>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────── COMING SOON -->
+    <section
+      id="coming-soon"
+      class="relative border-t border-border py-32 sm:py-40"
+    >
+      <div class="container-x">
+        <header class="mb-20 max-w-5xl">
+          <p
+            class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent"
+          >
+            ◆ Coming Soon
+          </p>
+          <h2
+            class="reveal reveal-delay-1 font-display font-extrabold text-display-lg text-fg xl:whitespace-nowrap"
+          >
+            More than messengers.
+          </h2>
+          <p
+            class="reveal reveal-delay-2 mt-6 max-w-2xl text-lede text-muted-bright"
+          >
+            BoxB is becoming the single window for everything you work in.
+            Code, chats, tickets, CI, secrets, AI — all under one frame, no
+            logging in and out.
+          </p>
+        </header>
+
+        <ul
+          class="grid grid-cols-1 gap-px bg-border md:grid-cols-2 lg:grid-cols-3"
+        >
+          {
+            soon.map((s, i) => (
+              <li
+                class={`group reveal reveal-delay-${(i % 3) + 1} relative flex flex-col bg-bg p-8 transition-colors duration-500 hover:bg-surface sm:p-10`}
+              >
+                <div class="mb-7 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center border border-accent/40 bg-bg transition-colors duration-300 group-hover:border-accent">
+                    {s.icon === 'branch' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="6" cy="5" r="2" />
+                        <circle cx="6" cy="19" r="2" />
+                        <circle cx="18" cy="9" r="2" />
+                        <path d="M6 7v10" />
+                        <path d="M18 11c0 4-6 4-6 8" />
+                        <path d="M6 7c0 4 6 4 6 8" />
+                      </svg>
+                    )}
+                    {s.icon === 'spark' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 3v6" />
+                        <path d="M12 15v6" />
+                        <path d="M3 12h6" />
+                        <path d="M15 12h6" />
+                        <path d="M5.5 5.5l3 3" />
+                        <path d="M15.5 15.5l3 3" />
+                        <path d="M5.5 18.5l3-3" />
+                        <path d="M15.5 8.5l3-3" />
+                      </svg>
+                    )}
+                    {s.icon === 'kanban' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="3" y="3" width="5" height="14" />
+                        <rect x="10" y="3" width="5" height="9" />
+                        <rect x="17" y="3" width="4" height="18" />
+                      </svg>
+                    )}
+                    {s.icon === 'chat' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M3 7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8l-4 3v-3a2 2 0 0 1-1-2z" />
+                        <path d="M21 11v6a2 2 0 0 1-2 2h-7l-3 2" />
+                      </svg>
+                    )}
+                    {s.icon === 'pipeline' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="2" y="4" width="6" height="6" />
+                        <rect x="16" y="4" width="6" height="6" />
+                        <rect x="2" y="14" width="6" height="6" />
+                        <rect x="16" y="14" width="6" height="6" />
+                        <path d="M8 7h8" />
+                        <path d="M8 17h8" />
+                        <path d="M5 10v4" />
+                        <path d="M19 10v4" />
+                      </svg>
+                    )}
+                    {s.icon === 'terminal' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="3" y="4" width="18" height="16" rx="1" />
+                        <polyline points="7 9 10 12 7 15" />
+                        <line x1="13" y1="15" x2="17" y2="15" />
+                      </svg>
+                    )}
+                    {s.icon === 'shield' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+                        <path d="M12 9v3" />
+                        <circle cx="12" cy="15.2" r="0.6" fill="#D4AF37" />
+                      </svg>
+                    )}
+                    {s.icon === 'command' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M9 6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3z" />
+                      </svg>
+                    )}
+                    {s.icon === 'link' && (
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#D4AF37"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07L11.5 4.5" />
+                        <path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07L12.5 19.5" />
+                      </svg>
+                    )}
+                  </div>
+                  <span class="border border-accent/50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+                    Soon
+                  </span>
+                </div>
+
+                <h3 class="font-display text-2xl font-bold tracking-tight text-fg sm:text-[1.75rem]">
+                  {s.title}
+                </h3>
+
+                {s.apps && (
+                  <ul class="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+                    {s.apps.map((a) => (
+                      <li class="border border-border-bright px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-fg/85">
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <p class="mt-5 max-w-sm text-sm leading-relaxed text-muted-bright sm:text-[15px]">
+                  {s.description}
+                </p>
+
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-0 bottom-0 h-px scale-x-0 bg-accent transition-transform duration-500 group-hover:scale-x-100"
+                ></span>
+
+                <span class="absolute right-6 top-6 hidden font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                  {s.n}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mt-12 text-sm text-muted-bright">
+          Plus: macOS · Linux · code-signed installers · auto-update polish
+        </p>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────── VERSION HISTORY -->
+    <section
+      id="shipped"
+      class="relative border-t border-border py-32 sm:py-40 bg-surface/30"
+    >
+      <div class="container-x">
+        <header class="mb-20 max-w-3xl">
+          <p
+            class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent"
+          >
+            ◆ Shipped
+          </p>
+          <h2
+            class="reveal reveal-delay-1 font-display font-extrabold text-display-lg text-fg"
+          >
+            Version history.
+          </h2>
+          <p class="reveal reveal-delay-2 mt-6 text-lede text-muted-bright">
+            Every release. What changed. Real progress, written in plain
+            English.
+          </p>
+        </header>
+
+        <ol class="space-y-20 md:space-y-24">
+          {
+            releases.map((r) => (
+              <li class="reveal grid grid-cols-1 gap-8 border-l-2 border-accent/40 pl-6 md:grid-cols-12 md:gap-12 md:border-l-0 md:pl-0">
+                <div class="md:col-span-3 md:border-l-2 md:border-accent/40 md:pl-6">
+                  <p class="font-display text-3xl font-extrabold tracking-tight text-fg sm:text-4xl">
+                    {r.version}
+                  </p>
+                  <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-bright">
+                    {r.date}
+                  </p>
+                </div>
+                <div class="md:col-span-9">
+                  <h3 class="font-display text-xl font-bold tracking-tight text-fg sm:text-2xl">
+                    {r.title}
+                  </h3>
+                  <ul class="mt-6 space-y-3 text-base leading-relaxed text-muted-bright sm:text-[17px]">
+                    {r.changes.map((c) => (
+                      <li class="relative pl-6">
+                        <span
+                          aria-hidden="true"
+                          class="absolute left-0 top-[0.65em] inline-block h-1 w-2.5 bg-accent"
+                        />
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <p class="mt-20 text-sm text-muted-bright">
+          Want to see commit-level detail?{' '}
+          <a
+            href="https://github.com/baalidxb/boxb"
+            target="_blank"
+            rel="noopener"
+            class="text-fg underline underline-offset-4 decoration-accent/60 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            View the source on GitHub
+          </a>{' '}
+          <span aria-hidden="true">→</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────── CTA -->
+    <section
+      class="relative overflow-hidden border-t border-border py-28 sm:py-36"
+    >
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div
+          class="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2"
+          style="background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(212,175,55,0.06), transparent 65%);"
+        >
+        </div>
+      </div>
+
+      <div class="container-x flex flex-col items-center text-center">
+        <h2
+          class="reveal font-display font-extrabold text-display-lg text-fg"
+        >
+          Ready when you are.
+        </h2>
+        <a
+          href="/download/win"
+          class="reveal reveal-delay-1 magnetic mt-10 inline-flex items-center justify-center gap-3 border border-accent bg-accent px-9 py-5 text-lg font-semibold tracking-tight text-black transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-5px_rgba(212,175,55,0.55)]"
+          data-magnetic
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download BoxB for Windows
+        </a>
+        <p class="reveal reveal-delay-2 mt-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-bright">
+          Free during beta · v0.1.1 · 80MB
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <PageMotion />
+</Base>

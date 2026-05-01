@@ -1,0 +1,88 @@
+---
+function hexPath(cx: number, cy: number, r: number) {
+  const pts: string[] = [];
+  for (let i = 0; i < 6; i++) {
+    const a = (Math.PI / 3) * i;
+    pts.push(`${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`);
+  }
+  return pts.join(' ');
+}
+
+const tints = [
+  '#1f3327',
+  '#22304d',
+  '#3a2832',
+  '#223a3a',
+  '#3a3622',
+  '#2c2238',
+  '#1a1a1a',
+  '#161616',
+  '#1f3327',
+  '#22304d',
+  '#3a2832',
+  '#223a3a',
+  '#3a3622',
+  '#2c2238',
+  '#1a1a1a',
+  '#161616',
+  '#1f3327',
+];
+
+// Build a flat-top hex grid pattern, 4 rows x 5 cols (offset)
+const cells: { x: number; y: number; tint: string; isCenter: boolean }[] = [];
+const FW = 50;
+const FH = FW * Math.sqrt(3) / 2;
+let idx = 0;
+for (let row = 0; row < 4; row++) {
+  for (let col = 0; col < 6; col++) {
+    const x = col * FW * 0.75 + 30;
+    const y = row * FH + (col % 2 ? FH / 2 : 0) + 30;
+    const isCenter = row === 1 && col === 2;
+    cells.push({
+      x,
+      y,
+      tint: isCenter ? '#D4AF37' : tints[idx % tints.length],
+      isCenter,
+    });
+    idx++;
+  }
+}
+---
+
+<div class="absolute inset-0">
+  <svg viewBox="0 0 320 220" class="h-full w-full">
+    <defs>
+      <linearGradient id="grid-gold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F0CC52" />
+        <stop offset="100%" stop-color="#9C7E1F" />
+      </linearGradient>
+      <radialGradient id="grid-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.4" />
+        <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    {
+      cells.map((c) => (
+        <g>
+          {c.isCenter && (
+            <circle cx={c.x} cy={c.y} r="55" fill="url(#grid-glow)" />
+          )}
+          <polygon
+            points={hexPath(c.x, c.y, 22)}
+            fill={c.isCenter ? 'url(#grid-gold)' : c.tint}
+            stroke={c.isCenter ? '#D4AF37' : '#1f1f1f'}
+            stroke-width={c.isCenter ? '0.8' : '0.5'}
+            opacity={c.isCenter ? 1 : 0.85}
+          />
+          {c.isCenter && (
+            <>
+              <rect x={c.x - 13} y={c.y - 3} width="26" height="2.4" fill="#000" />
+              <rect x={c.x - 13} y={c.y + 4} width="26" height="2.4" fill="#000" />
+            </>
+          )}
+        </g>
+      ))
+    }
+  </svg>
+</div>

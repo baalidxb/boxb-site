@@ -1,0 +1,132 @@
+---
+// Static SVG fallback for prefers-reduced-motion or no-WebGL contexts.
+// Two rings (6 + 12) of hex tiles around a glowing center hex.
+
+interface HexCell {
+  cx: number;
+  cy: number;
+  scale: number;
+  fill: string;
+  opacity: number;
+}
+
+// Flat-top hex grid math: width = 2R, height = R*sqrt(3)
+const R = 60;
+const FW = R * 2;
+const FH = R * Math.sqrt(3);
+
+// 6 ring-1 neighbors of a flat-top center
+const ring1 = [
+  { dx: FW * 0.75, dy: -FH * 0.5 },
+  { dx: FW * 0.75, dy: FH * 0.5 },
+  { dx: 0, dy: FH },
+  { dx: -FW * 0.75, dy: FH * 0.5 },
+  { dx: -FW * 0.75, dy: -FH * 0.5 },
+  { dx: 0, dy: -FH },
+];
+
+const ring2 = [
+  { dx: FW * 1.5, dy: 0 },
+  { dx: FW * 1.5, dy: -FH },
+  { dx: FW * 1.5, dy: FH },
+  { dx: FW * 0.75, dy: -FH * 1.5 },
+  { dx: FW * 0.75, dy: FH * 1.5 },
+  { dx: 0, dy: -FH * 2 },
+  { dx: 0, dy: FH * 2 },
+  { dx: -FW * 0.75, dy: -FH * 1.5 },
+  { dx: -FW * 0.75, dy: FH * 1.5 },
+  { dx: -FW * 1.5, dy: 0 },
+  { dx: -FW * 1.5, dy: -FH },
+  { dx: -FW * 1.5, dy: FH },
+];
+
+const ringTints = [
+  '#1f2a1f', // green hint (messaging)
+  '#1c2230', // blue hint (productivity)
+  '#2a1f24', // mauve hint
+  '#1f2a2a', // teal hint
+  '#2a261f', // amber hint
+  '#221f2a', // violet hint
+  '#1a1a1a',
+  '#161616',
+  '#1f1f1f',
+  '#181818',
+  '#1c1c1c',
+  '#171717',
+];
+
+const cells: HexCell[] = [];
+
+ring2.forEach((p, i) => {
+  cells.push({
+    cx: p.dx,
+    cy: p.dy,
+    scale: 0.78,
+    fill: ringTints[i % ringTints.length],
+    opacity: 0.55,
+  });
+});
+ring1.forEach((p, i) => {
+  cells.push({
+    cx: p.dx,
+    cy: p.dy,
+    scale: 0.85,
+    fill: ringTints[i % ringTints.length],
+    opacity: 0.85,
+  });
+});
+
+function hexPath(cx: number, cy: number, r: number) {
+  // flat-top hex
+  const pts: string[] = [];
+  for (let i = 0; i < 6; i++) {
+    const a = (Math.PI / 3) * i;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    pts.push(`${x.toFixed(2)},${y.toFixed(2)}`);
+  }
+  return pts.join(' ');
+}
+---
+
+<svg
+  viewBox="-260 -260 520 520"
+  xmlns="http://www.w3.org/2000/svg"
+  class="h-full w-full"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <radialGradient id="bb-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="bb-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0CC52" />
+      <stop offset="55%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#9C7E1F" />
+    </linearGradient>
+  </defs>
+
+  <circle cx="0" cy="0" r="260" fill="url(#bb-glow)" />
+
+  {
+    cells.map((c) => (
+      <polygon
+        points={hexPath(c.cx, c.cy, R * c.scale)}
+        fill={c.fill}
+        opacity={c.opacity}
+        stroke="#1f1f1f"
+        stroke-width="0.6"
+      />
+    ))
+  }
+
+  <!-- Center BoxB hex with bars -->
+  <g>
+    <polygon points={hexPath(0, 0, R)} fill="url(#bb-gold)" />
+    <rect x={-R * 0.6} y={-R * 0.135} width={R * 1.2} height={R * 0.11} fill="#000" />
+    <rect x={-R * 0.6} y={R * 0.2} width={R * 1.2} height={R * 0.11} fill="#000" />
+  </g>
+</svg>

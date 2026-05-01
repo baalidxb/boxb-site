@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+const { class: className = '', size = 'md' } = Astro.props;
+const sizeClass =
+  size === 'sm' ? 'text-base' : size === 'lg' ? 'text-2xl' : 'text-lg';
+---
+
+<span class={`inline-flex items-baseline tracking-tight ${sizeClass} ${className}`}>
+  <span class="font-medium text-fg">Box</span><span class="font-extrabold text-accent">B</span>
+</span>
