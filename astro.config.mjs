@@ -6,11 +6,11 @@ export default defineConfig({
   site: 'https://boxb.app',
   redirects: {
     // /download/win → latest Windows installer on GitHub.
-    // Hardcoded to v0.1.1 for this release; update per-release until we wire this dynamically.
+    // Hardcoded to v0.1.3 for this release; update per-release until we wire this dynamically.
     '/download/win': {
       status: 302,
       destination:
-        'https://github.com/baalidxb/boxb/releases/latest/download/BoxB-Setup-0.1.1.exe',
+        'https://github.com/baalidxb/boxb/releases/download/v0.1.3/BoxB-Setup-0.1.3.exe',
     },
   },
   integrations: [
