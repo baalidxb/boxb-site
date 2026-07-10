@@ -28,12 +28,14 @@ import HoneycombScene from '~/components/HoneycombScene.astro';
   <div class="container-x relative z-10 flex min-h-[100svh] flex-col justify-center pt-32 pb-20 sm:pt-36">
     <div class="grid grid-cols-1 lg:grid-cols-12">
       <div class="lg:col-span-7">
-        <p
-          class="reveal mb-6 inline-flex items-center gap-2 border border-border-bright px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-bright"
+        <a
+          href="/changelog"
+          class="reveal mb-6 inline-flex items-center gap-2 border border-accent/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-accent transition-colors hover:border-accent hover:bg-accent/10"
         >
-          <span class="inline-block h-1.5 w-1.5 bg-accent"></span>
-          Now in beta · Windows
-        </p>
+          <span class="inline-block h-1.5 w-1.5 animate-pulse bg-accent"></span>
+          v0.2.0 is out — The AI-native update
+          <span aria-hidden="true">→</span>
+        </a>
         <h1
           class="reveal reveal-delay-1 font-display font-extrabold text-display-xl text-fg"
         >
@@ -76,6 +78,23 @@ import HoneycombScene from '~/components/HoneycombScene.astro';
             <span aria-hidden="true">→</span>
           </a>
         </div>
+
+        <ul
+          class="reveal reveal-delay-4 mt-12 flex flex-wrap items-center gap-x-10 gap-y-3"
+        >
+          <li class="flex items-baseline gap-2">
+            <span class="font-display text-2xl font-extrabold text-accent">29</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-bright">services</span>
+          </li>
+          <li class="flex items-baseline gap-2">
+            <span class="font-display text-2xl font-extrabold text-accent">∞</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-bright">accounts</span>
+          </li>
+          <li class="flex items-baseline gap-2">
+            <span class="font-display text-2xl font-extrabold text-accent">0</span>
+            <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-bright">telemetry</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

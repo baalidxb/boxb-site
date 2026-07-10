@@ -1,0 +1,74 @@
+---
+// v0.2.0 redesign: honest comparison. "Typical multi-app browser" keeps it
+// factual without naming competitors; browser tabs is the real enemy anyway.
+const rows = [
+  ['Unlimited accounts per app', 'yes', 'partial', 'no'],
+  ['Workspaces & multi-window', 'yes', 'partial', 'no'],
+  ['AI command bar & meeting briefs', 'yes', 'no', 'no'],
+  ['Ask AI about any message', 'yes', 'no', 'no'],
+  ['Built-in terminal & secret scanner', 'yes', 'no', 'no'],
+  ['Works without an account', 'yes', 'no', 'yes'],
+  ['Local-first · zero telemetry', 'yes', 'partial', 'no'],
+] as const;
+
+const cell = (v: string) =>
+  v === 'yes' ? '✓' : v === 'partial' ? '±' : '—';
+const cellClass = (v: string) =>
+  v === 'yes'
+    ? 'text-accent font-bold'
+    : v === 'partial'
+      ? 'text-muted-bright'
+      : 'text-muted/50';
+---
+
+<section id="compare" class="relative border-t border-border py-32 sm:py-40 bg-surface/30">
+  <div class="container-x">
+    <header class="mb-16 max-w-3xl">
+      <p class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">
+        ◆ Why switch
+      </p>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-display-lg text-fg">
+        Tabs were never the answer.
+      </h2>
+      <p class="reveal reveal-delay-2 mt-6 max-w-xl text-lede text-muted-bright">
+        Compare BoxB with the way you work today.
+      </p>
+    </header>
+
+    <div class="reveal overflow-x-auto">
+      <table class="w-full min-w-[640px] border-collapse text-left">
+        <thead>
+          <tr class="border-b border-border-bright">
+            <th class="py-4 pr-4 text-sm font-normal text-muted-bright"></th>
+            <th class="px-4 py-4">
+              <span class="inline-flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 160 160" aria-hidden="true">
+                  <polygon points="80,40 116,62 116,104 80,126 44,104 44,62" fill="#D4AF37" />
+                  <rect x="44" y="72" width="72" height="7" fill="#000" />
+                  <rect x="44" y="92" width="72" height="7" fill="#000" />
+                </svg>
+                <span class="font-display text-base font-bold text-fg">Box<span class="text-accent">B</span></span>
+              </span>
+            </th>
+            <th class="px-4 py-4 text-sm font-medium text-muted-bright">Typical multi-app browser</th>
+            <th class="px-4 py-4 text-sm font-medium text-muted-bright">Browser tabs</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([label, a, b, c]) => (
+            <tr class="border-b border-border transition-colors hover:bg-black/30">
+              <td class="py-4 pr-4 text-[15px] text-fg">{label}</td>
+              <td class={`px-4 py-4 text-center text-lg ${cellClass(a)}`}>{cell(a)}</td>
+              <td class={`px-4 py-4 text-center text-lg ${cellClass(b)}`}>{cell(b)}</td>
+              <td class={`px-4 py-4 text-center text-lg ${cellClass(c)}`}>{cell(c)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="reveal mt-8 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+      ± = partial or paid tier · based on publicly listed features, July 2026
+    </p>
+  </div>
+</section>

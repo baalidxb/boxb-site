@@ -1,0 +1,180 @@
+---
+// v0.2.0 redesign: "AI in action" — live CSS-animated mocks of the command
+// bar, a reminder toast, and the unified agenda. No screenshots, no JS;
+// pure CSS loops that respect prefers-reduced-motion.
+---
+
+<section id="ai" class="relative overflow-hidden border-t border-border py-32 sm:py-40">
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div
+      class="absolute left-1/2 top-0 h-[80%] w-[120%] -translate-x-1/2"
+      style="background: radial-gradient(ellipse 45% 55% at 50% 0%, rgba(212,175,55,0.07), transparent 65%);"
+    >
+    </div>
+  </div>
+
+  <div class="container-x">
+    <header class="mb-20 max-w-3xl">
+      <p class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">
+        ◆ New in v0.2.0
+      </p>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-display-lg text-fg">
+        Your work just got <span class="text-accent">a brain</span>.
+      </h2>
+      <p class="reveal reveal-delay-2 mt-6 max-w-xl text-lede text-muted-bright">
+        Talk to your workspace. Get warned before meetings. Turn any message
+        into a reply. This is what AI-native actually looks like.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <!-- ── Command bar mock ─────────────────────────────── -->
+      <figure class="reveal flex flex-col">
+        <div class="cmdbar-mock flex-1 border border-border-bright bg-surface p-5">
+          <div class="flex items-center gap-2 border-b border-border pb-3">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <span class="typing font-mono text-[13px] text-fg"></span>
+            <span class="caret" aria-hidden="true"></span>
+          </div>
+          <div class="cmd-result mt-3 flex items-center gap-3 border-l-2 border-accent bg-black/40 px-3 py-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <div>
+              <p class="text-[13px] text-fg">Remind: call Ali</p>
+              <p class="font-mono text-[11px] text-muted-bright">Today · 5:00 PM</p>
+            </div>
+            <span class="ml-auto border border-accent/50 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-accent">Enter</span>
+          </div>
+        </div>
+        <figcaption class="mt-4 flex items-baseline gap-3">
+          <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Ctrl+K</span>
+          <span class="text-sm text-muted-bright">Say it in plain words. BoxB does it.</span>
+        </figcaption>
+      </figure>
+
+      <!-- ── Meeting brief toast mock ─────────────────────── -->
+      <figure class="reveal reveal-delay-1 flex flex-col">
+        <div class="flex flex-1 items-center justify-center border border-border-bright bg-surface p-5">
+          <div class="toast-mock w-full max-w-[320px] border border-accent bg-black p-4 shadow-[0_8px_40px_rgba(212,175,55,0.15)]">
+            <div class="flex items-start gap-3">
+              <svg width="18" height="18" viewBox="0 0 160 160" aria-hidden="true">
+                <polygon points="80,40 116,62 116,104 80,126 44,104 44,62" fill="#D4AF37" />
+                <rect x="44" y="72" width="72" height="7" fill="#000" />
+                <rect x="44" y="92" width="72" height="7" fill="#000" />
+              </svg>
+              <div class="min-w-0">
+                <p class="text-[13px] font-semibold text-fg">Meeting in 15 minutes</p>
+                <p class="mt-0.5 text-[12px] text-muted-bright">Q3 pricing review — 3:00 PM · Office 1204</p>
+              </div>
+            </div>
+            <div class="mt-3 flex justify-end gap-2">
+              <span class="border border-border-bright px-2.5 py-1 text-[11px] text-muted-bright">Snooze 10m</span>
+              <span class="bg-accent px-2.5 py-1 text-[11px] font-semibold text-black">Open brief</span>
+            </div>
+          </div>
+        </div>
+        <figcaption class="mt-4 flex items-baseline gap-3">
+          <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Briefs</span>
+          <span class="text-sm text-muted-bright">Warned before every meeting — with AI prep notes.</span>
+        </figcaption>
+      </figure>
+
+      <!-- ── Agenda mock ──────────────────────────────────── -->
+      <figure class="reveal reveal-delay-2 flex flex-col">
+        <div class="flex-1 border border-border-bright bg-surface p-5">
+          <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-bright">Today</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-3 border border-border bg-black/40 px-3 py-2.5">
+              <span class="h-2 w-2 shrink-0 rounded-full bg-accent"></span>
+              <span class="font-mono text-[11px] text-muted-bright">10:00</span>
+              <span class="truncate text-[13px] text-fg">Team standup</span>
+            </li>
+            <li class="agenda-hot flex items-center gap-3 border border-accent/70 bg-black/40 px-3 py-2.5">
+              <span class="h-2 w-2 shrink-0 rounded-full bg-accent"></span>
+              <span class="font-mono text-[11px] text-muted-bright">15:00</span>
+              <span class="truncate text-[13px] text-fg">Q3 pricing review</span>
+              <span class="ml-auto shrink-0 font-mono text-[9px] uppercase tracking-[0.15em] text-accent">in 15 min</span>
+            </li>
+            <li class="flex items-center gap-3 border border-border bg-black/40 px-3 py-2.5">
+              <span class="h-2 w-2 shrink-0 rounded-full" style="background:#60A5FA"></span>
+              <span class="font-mono text-[11px] text-muted-bright">18:30</span>
+              <span class="truncate text-[13px] text-fg">Call with DEF support</span>
+            </li>
+          </ul>
+        </div>
+        <figcaption class="mt-4 flex items-baseline gap-3">
+          <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Calendar</span>
+          <span class="text-sm text-muted-bright">Google + Outlook merged. No login, no cloud.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <p class="reveal mt-14 max-w-2xl text-sm leading-relaxed text-muted">
+      AI features use your own Anthropic API key. Only the text you explicitly
+      select or type is sent — your messages and sessions never leave your
+      machine.
+    </p>
+  </div>
+</section>
+
+<style>
+  /* typing loop: type (steps) → hold with result → clear → repeat */
+  .typing::before {
+    content: 'remind me to call Ali at 5pm';
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    max-width: 28ch;
+    animation: type 7s steps(28, end) infinite;
+  }
+  .caret {
+    width: 2px;
+    height: 1.05em;
+    background: #d4af37;
+    animation: blink 0.9s step-end infinite;
+  }
+  .cmd-result {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: result 7s ease-out infinite;
+  }
+  .toast-mock {
+    animation: toastin 6s ease-out infinite;
+  }
+  .agenda-hot {
+    animation: hotpulse 2.4s ease-in-out infinite;
+  }
+  @keyframes type {
+    0% { width: 0; }
+    40% { width: 28ch; }
+    92% { width: 28ch; }
+    97%, 100% { width: 0; }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  @keyframes result {
+    0%, 42% { opacity: 0; transform: translateY(6px); }
+    50%, 90% { opacity: 1; transform: translateY(0); }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes toastin {
+    0% { opacity: 0; transform: translateX(40px); }
+    10%, 88% { opacity: 1; transform: translateX(0); }
+    96%, 100% { opacity: 0; transform: translateX(40px); }
+  }
+  @keyframes hotpulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    50% { box-shadow: 0 0 22px 0 rgba(212, 175, 55, 0.22); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .typing::before { animation: none; width: 28ch; }
+    .caret, .agenda-hot { animation: none; }
+    .cmd-result { animation: none; opacity: 1; transform: none; }
+    .toast-mock { animation: none; }
+  }
+</style>

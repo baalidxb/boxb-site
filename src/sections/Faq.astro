@@ -1,0 +1,72 @@
+---
+// v0.2.0 redesign: FAQ. Native <details> — accessible, zero JS.
+const faqs = [
+  {
+    q: 'Is BoxB really free?',
+    a: 'Yes — completely free during beta. No account, no card, no trial timer. When paid plans arrive later, beta users will hear it from us first.',
+  },
+  {
+    q: 'Can BoxB read my messages?',
+    a: 'No. BoxB is a container: each service runs in its own isolated session on your machine, exactly like it would in a browser. No cloud sync, no telemetry, nothing leaves your computer.',
+  },
+  {
+    q: 'How do the AI features work?',
+    a: 'Bring your own Anthropic API key (set it once in the tray menu). Only the text you explicitly select or type into an AI feature is sent to Anthropic — never your messages, sessions, or files. No key? Everything else works normally.',
+  },
+  {
+    q: 'How many accounts can I add?',
+    a: 'Unlimited. Five WhatsApp numbers, three Gmails, two Slacks — every instance gets its own tile, its own login, its own isolated session.',
+  },
+  {
+    q: 'What about macOS and Linux?',
+    a: 'On the roadmap. BoxB is built on a cross-platform foundation; Windows simply ships first. Watch the changelog.',
+  },
+  {
+    q: 'How do updates work?',
+    a: 'Silently, from GitHub Releases. BoxB downloads updates in the background and asks before restarting. You never reinstall by hand.',
+  },
+];
+---
+
+<section id="faq" class="relative border-t border-border py-32 sm:py-40">
+  <div class="container-x">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+      <header class="lg:col-span-4">
+        <p class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">
+          ◆ FAQ
+        </p>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold text-display-lg text-fg">
+          Fair questions.
+        </h2>
+        <p class="reveal reveal-delay-2 mt-6 text-lede text-muted-bright">
+          Straight answers.
+        </p>
+      </header>
+
+      <div class="lg:col-span-8">
+        <div class="reveal divide-y divide-border border-y border-border">
+          {faqs.map((f) => (
+            <details class="faq group">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-[17px] font-medium text-fg transition-colors hover:text-accent [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="faq-icon relative block h-4 w-4 shrink-0" aria-hidden="true">
+                  <span class="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-accent"></span>
+                  <span class="faq-v absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-accent transition-transform duration-300"></span>
+                </span>
+              </summary>
+              <p class="max-w-2xl pb-7 text-[15px] leading-relaxed text-muted-bright">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  details[open] .faq-v {
+    transform: translateX(-50%) scaleY(0);
+  }
+</style>
