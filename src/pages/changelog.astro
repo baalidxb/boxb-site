@@ -496,4 +496,62 @@ const releases: Release[] = [
             href="https://github.com/baalidxb/boxb"
             target="_blank"
             rel="noopener"
-            class="text-fg underline underline-offset-4 decoration-accent/60 transition-c
+            class="text-fg underline underline-offset-4 decoration-accent/60 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            View the source on GitHub
+          </a>{' '}
+          <span aria-hidden="true">→</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────── CTA -->
+    <section
+      class="relative overflow-hidden border-t border-border py-28 sm:py-36"
+    >
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div
+          class="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2"
+          style="background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(212,175,55,0.06), transparent 65%);"
+        >
+        </div>
+      </div>
+
+      <div class="container-x flex flex-col items-center text-center">
+        <h2
+          class="reveal font-display font-extrabold text-display-lg text-fg"
+        >
+          Ready when you are.
+        </h2>
+        <a
+          href="/download/win"
+          class="reveal reveal-delay-1 magnetic mt-10 inline-flex items-center justify-center gap-3 border border-accent bg-accent px-9 py-5 text-lg font-semibold tracking-tight text-black transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-5px_rgba(212,175,55,0.55)]"
+          data-magnetic
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download BoxB for Windows
+        </a>
+        <p class="reveal reveal-delay-2 mt-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-bright">
+          Free during beta · v0.2.0 · Windows 10 / 11
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <PageMotion />
+</Base>
