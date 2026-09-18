@@ -1,0 +1,74 @@
+---
+// Phase 2 of the redesign: real screenshots of BoxB v0.2.0, framed. Files
+// live in public/screens/*.webp (trimmed + optimized, ~15-20KB each).
+const shots = [
+  {
+    src: '/screens/askai.webp',
+    w: 1600,
+    h: 925,
+    title: 'Ask AI, anywhere',
+    body: 'Select any message in any service → Summarize, Translate, Draft Reply, Explain.',
+    tag: 'Ctrl+Shift+K',
+  },
+  {
+    src: '/screens/reminders.webp',
+    w: 1600,
+    h: 930,
+    title: 'Reminders & tasks',
+    body: 'Type it or click it. Timed reminders with snooze, plus a simple task list — right inside your workspace.',
+    tag: 'Bell icon',
+  },
+  {
+    src: '/screens/terminal.webp',
+    w: 1600,
+    h: 931,
+    title: 'A real terminal',
+    body: 'PowerShell docked under your services. Tabs, history, zero alt-tabbing.',
+    tag: 'Ctrl+J',
+  },
+] as const;
+---
+
+<section id="showcase" class="relative border-t border-border py-32 sm:py-40">
+  <div class="container-x">
+    <header class="mb-16 max-w-3xl">
+      <p class="reveal mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">
+        ◆ The real thing
+      </p>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-display-lg text-fg">
+        No mockups. This is BoxB.
+      </h2>
+      <p class="reveal reveal-delay-2 mt-6 max-w-xl text-lede text-muted-bright">
+        Screens from v0.2.0, exactly as they run on Windows today.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8">
+      {shots.map((s, i) => (
+        <figure class={`reveal reveal-delay-${i + 1} group flex flex-col`}>
+          <div class="relative overflow-hidden border border-border-bright bg-black transition-colors duration-500 group-hover:border-accent/70">
+            <div class="flex items-center gap-1.5 border-b border-border bg-surface px-3 py-2">
+              <span class="h-2 w-2 rounded-full bg-[#2a2a2a]"></span>
+              <span class="h-2 w-2 rounded-full bg-[#2a2a2a]"></span>
+              <span class="h-2 w-2 rounded-full bg-accent/70"></span>
+              <span class="ml-auto border border-accent/40 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-accent">{s.tag}</span>
+            </div>
+            <img
+              src={s.src}
+              width={s.w}
+              height={s.h}
+              alt={s.title}
+              loading="lazy"
+              decoding="async"
+              class="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
+          </div>
+          <figcaption class="mt-5">
+            <h3 class="font-display text-xl font-bold tracking-tight text-fg">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-bright">{s.body}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

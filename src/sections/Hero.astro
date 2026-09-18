@@ -16,7 +16,7 @@ import HoneycombScene from '~/components/HoneycombScene.astro';
       <!-- Scene column -->
       <div class="lg:col-span-6 relative">
         <div
-          class="absolute inset-x-0 top-[18vh] mx-auto h-[60vh] w-[min(90vw,640px)] sm:h-[70vh] lg:inset-y-0 lg:my-auto lg:h-[80vh] lg:w-full"
+          class="absolute inset-x-0 top-[18vh] mx-auto h-[60vh] w-[min(90vw,640px)] opacity-80 sm:h-[70vh] lg:top-[6vh] lg:h-[80vh] lg:w-full"
         >
           <HoneycombScene />
         </div>
@@ -97,6 +97,43 @@ import HoneycombScene from '~/components/HoneycombScene.astro';
         </ul>
       </div>
     </div>
+
+    <!-- Phase 2: the real product. Framed window shot with a gold glow; the
+         3D honeycomb stays behind it as atmosphere. -->
+    <figure class="reveal reveal-delay-4 relative mt-16 sm:mt-20">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -inset-x-10 -top-10 bottom-0"
+        style="background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(212,175,55,0.16), transparent 70%);"
+      >
+      </div>
+      <div class="hero-frame relative overflow-hidden border border-accent/60 bg-black shadow-[0_30px_120px_-20px_rgba(212,175,55,0.35)]">
+        <div class="flex items-center gap-2 border-b border-border bg-surface px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-[#2a2a2a]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[#2a2a2a]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-accent/70"></span>
+          <span class="ml-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted">BoxB · v0.2.0</span>
+        </div>
+        <img
+          src="/screens/commandbar.webp"
+          width="1600"
+          height="930"
+          alt="BoxB with the Ctrl+K command bar open over a sidebar of services"
+          loading="eager"
+          decoding="async"
+          class="block h-auto w-full"
+        />
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+          style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.55));"
+        >
+        </div>
+      </div>
+      <figcaption class="mt-4 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+        Ctrl+K — every service, every workspace, one keystroke
+      </figcaption>
+    </figure>
   </div>
 
   <!-- Subtle scroll cue -->
