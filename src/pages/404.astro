@@ -1,0 +1,44 @@
+---
+import Base from '~/layouts/Base.astro';
+import Nav from '~/components/Nav.astro';
+import Footer from '~/components/Footer.astro';
+---
+
+<Base title="Page not found — BoxB" description="That page isn't in the hive.">
+  <Nav />
+
+  <main class="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div
+        class="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2"
+        style="background: radial-gradient(ellipse 45% 50% at 50% 50%, rgba(212,175,55,0.08), transparent 65%);"
+      >
+      </div>
+    </div>
+
+    <svg width="72" height="72" viewBox="0 0 160 160" aria-hidden="true" class="opacity-90">
+      <polygon points="80,40 116,62 116,104 80,126 44,104 44,62" fill="#D4AF37" />
+      <rect x="44" y="72" width="72" height="7" fill="#000" />
+      <rect x="44" y="92" width="72" height="7" fill="#000" />
+    </svg>
+
+    <p class="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-accent">404</p>
+    <h1 class="mt-4 font-display font-extrabold text-display-lg text-fg">
+      Lost in the hive.
+    </h1>
+    <p class="mt-6 max-w-md text-lede text-muted-bright">
+      That page doesn't exist — or it flew somewhere else. Everything you need is
+      one click away.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+      <a href="/" class="btn-primary">Back to the hive</a>
+      <a href="/download/win" class="btn-secondary">
+        Download BoxB
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Base>
